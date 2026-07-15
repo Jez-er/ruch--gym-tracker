@@ -5,8 +5,9 @@ type ActiveTrainingsStore = {
 	trainings: Training[]
 	setTrainings: (trainings: Training[]) => void
 	deleteTraining: (trainingId: number) => void
-	addTraining: (training: Training) => void
+	addTraining: (training: Omit<Training, 'id'>) => void
 	editTraining: (training: Training) => void
+	checkTraining: (id: number) => void
 }
 
 export const useActiveTrainingsStore = create<ActiveTrainingsStore>()(set => ({
@@ -25,7 +26,13 @@ export const useActiveTrainingsStore = create<ActiveTrainingsStore>()(set => ({
 
 	addTraining: training =>
 		set(state => ({
-			trainings: [...state.trainings, training],
+			trainings: [
+				...state.trainings,
+				{
+					id: Date.now(),
+					...training,
+				},
+			],
 		})),
 
 	editTraining: training =>
@@ -33,5 +40,10 @@ export const useActiveTrainingsStore = create<ActiveTrainingsStore>()(set => ({
 			trainings: state.trainings.map(t =>
 				t.id === training.id ? training : t,
 			),
+		})),
+
+	checkTraining: id =>
+		set(state => ({
+			trainings: state.trainings.filter(training => training.id !== id),
 		})),
 }))

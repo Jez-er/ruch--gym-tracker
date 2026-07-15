@@ -1,8 +1,8 @@
-import { Button } from '@/shared/ui/button'
 import { Progress } from '@/shared/ui/progress'
 import { useActiveTrainingsStore } from '@/store/activeTrainings.store'
-import { Dumbbell, Plus } from 'lucide-react'
-import { TrainingCard } from './widgets/TrainigCard'
+import { CreateTrainingPlaceholderModal } from './modals/CreateTrainigPlaceholder'
+import { CreateTrainingModal } from './modals/CreateTraining'
+import { TrainingView } from './modals/TrainigView'
 
 export const DashboardPlanningPage = () => {
 	const trainingStore = useActiveTrainingsStore()
@@ -17,9 +17,7 @@ export const DashboardPlanningPage = () => {
 					</h3>
 				</div>
 				<div>
-					<Button className='w-52 h-10 text-base flex items-center gap-2'>
-						<Plus /> Add Training
-					</Button>
+					<CreateTrainingModal />
 				</div>
 			</header>
 			<section>
@@ -41,17 +39,12 @@ export const DashboardPlanningPage = () => {
 			<section>
 				<div className='grid grid-cols-2 grid-rows-5 gap-4 mt-5'>
 					{trainingStore.trainings.map(training => (
-						<TrainingCard key={Number(training.id)} training={training} />
+						<TrainingView key={Number(training.id)} training={training} />
 					))}
-					{Array.from({ length: Math.max(0, 10 - trainingStore.trainings.length) }).map((_, i) => (
-						<div
-							key={`placeholder-${i}`}
-							className='rounded-lg border-2 border-dashed border-border/50 bg-card/20 p-4 shadow-sm flex items-center justify-center cursor-pointer hover:bg-card/40 hover:border-border transition-all duration-300 min-h-[100px] group'
-						>
-							<div className='bg-background/50 p-3 rounded-full group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110'>
-								<Plus className='text-muted-foreground group-hover:text-primary transition-colors duration-300 w-6 h-6' />
-							</div>
-						</div>
+					{Array.from({
+						length: Math.max(0, 10 - trainingStore.trainings.length),
+					}).map((_, i) => (
+						<CreateTrainingPlaceholderModal key={`placeholder-${i}`} />
 					))}
 				</div>
 			</section>

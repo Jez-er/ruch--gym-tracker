@@ -1,8 +1,8 @@
 export interface Training {
-	id: Number
+	id: number
 	type: TrainingType
-	duration: Number
-	calories: Number
+	duration: number
+	calories: number
 	date: Date
 }
 
@@ -15,28 +15,28 @@ export type TrainingType =
 	| 'YOGA'
 
 export interface Exercise {
-	id: Number
-	trainingId: Number
-	activeTrainingId: Number
-	name: String
+	id: number
+	trainingId: number
+	activeTrainingId: number
+	name: string
 	sets: ExerciseSet[]
 	laps: ExerciseLap[]
 }
 
 export interface ExerciseSet {
-	id: Number
-	exerciseId: Number
+	id: number
+	exerciseId: number
 
-	reps: Number
-	weight: Number
-	approach: Number
+	reps: number
+	weight: number
+	approach: number
 }
 
 export interface ExerciseLap {
-	id: Number
-	exerciseId: Number
+	id: number
+	exerciseId: number
 
-	lapNumber: Number
-	duration: Number
-	distance: Number | null
+	lapNumber: number
+	duration: number
+	distance: number | null
 }

@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router'
 
 export const DashboardLayout = () => {
 	return (
-		<div className='flex w-full h-screen'>
+		<div className='flex w-full min-h-screen'>
 			<aside className='w-80 bg-card/95 backdrop-blur-lg p-5 border-r border-border/50'>
 				<div className='flex items-center gap-2'>
 					<div className='rounded-xl p-2 bg-gradient-to-br from-primary to-primary/60 shadow-lg shadow-primary/20 flex items-center justify-center text-primary-foreground'>
@@ -23,7 +23,7 @@ export const DashboardLayout = () => {
 							}`
 						}
 					>
-						<LayoutGrid className="transition-transform duration-300 group-hover:scale-110" />
+						<LayoutGrid className='transition-transform duration-300 group-hover:scale-110' />
 						Dashboard
 					</NavLink>
 					<NavLink
@@ -36,7 +36,7 @@ export const DashboardLayout = () => {
 							}`
 						}
 					>
-						<SquareChartGantt className="transition-transform duration-300 group-hover:scale-110" />
+						<SquareChartGantt className='transition-transform duration-300 group-hover:scale-110' />
 						Planing
 					</NavLink>
 				</div>
